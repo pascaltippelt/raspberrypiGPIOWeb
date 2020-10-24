@@ -18,9 +18,9 @@ echo "gpio=5,6,9,10,11,13,17,22,27=op,pu,dh" >> /boot/config.txt
 echo "#More info at https://www.raspberrypi.org/documentation/configuration/config-txt/gpio.md" >> /boot/config.txt
 
 #Install apache2 and php
-echo "Installing apache2 and php. This may take a while."
+echo "Installing wiringpi, apache2 and php. This may take a while."
 apt update; apt upgrade
-apt install apache2 php sudo
+apt install apache2 php sudo wiringpi
 
 #Setting up Website
 echo "Setting up php-files."
@@ -30,5 +30,11 @@ sudo -u www-data wget https://raw.githubusercontent.com/pascaltippelt/raspberryp
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/green.png -O /var/www/html/gpio/img/green.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/red.png -O /var/www/html/gpio/img/red.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/favicon.png -O /var/www/html/gpio/img/favicon.png
+
+echo "Testing wiringpi:"
+gpio readall
+
+echo "Adding www-data to gpio group."
+usermod -a -G gpio www-data
 
 echo "Done."
