@@ -29,5 +29,6 @@ sudo -u www-data mkdir /var/www/html/gpio/img
 sudo -u www-data wget https://raw.githubusercontent.com/pascaltippelt/raspberrypiGPIOWeb/main/apache/gpio/index.php -O /var/www/html/gpio/index.php
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/green.png -O /var/www/html/gpio/img/green.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/red.png -O /var/www/html/gpio/img/red.png
+sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/favicon.png -O /var/www/html/gpio/img/favicon.png
 
 echo "Done."
