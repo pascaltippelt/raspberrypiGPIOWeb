@@ -1,6 +1,8 @@
 # Raspberry Pi GPIO Web Control
 
-This project enables you to simple, fast and easy control your GPIOs on a Raspberry Pi or other Wiringpi-compatible board running a linux os.
+This project enables you to simple, fast and easy control your GPIOs on a Raspberry Pi or other Wiringpi-compatible board running a linux os. The example-configuration is for a 8 relais module with low-triggered io like [this one](https://amzn.to/3jAYWzl) (paid link).
+
+<img src="https://images-na.ssl-images-amazon.com/images/I/71AdP68p7hL._SL1500_.jpg" height="200px" alt="Sample image of a relais board" />
 
 ## Prerequisites
 
