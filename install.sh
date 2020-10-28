@@ -31,6 +31,11 @@ sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/ma
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/red.png -O /var/www/html/gpio/img/red.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/favicon.png -O /var/www/html/gpio/img/favicon.png
 
+#Configuring apache2
+echo "Setting up apache2 config."
+sudo wget https://raw.githubusercontent.com/pascaltippelt/raspberrypiGPIOWeb/main/apache/config/gpio.conf -O /etc/apache2/sites-available/gpio.conf
+sudo a2ensite gpio
+
 echo "Testing wiringpi:"
 gpio readall
 
