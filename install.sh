@@ -26,10 +26,12 @@ apt install apache2 php sudo wiringpi
 echo "Setting up php-files."
 sudo -u www-data mkdir /var/www/html/gpio
 sudo -u www-data mkdir /var/www/html/gpio/img
+sudo -u www-data mkdir /var/www/html/gpio/scripts
 sudo -u www-data wget https://raw.githubusercontent.com/pascaltippelt/raspberrypiGPIOWeb/main/apache/gpio/index.php -O /var/www/html/gpio/index.php
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/green.png -O /var/www/html/gpio/img/green.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/red.png -O /var/www/html/gpio/img/red.png
 sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/img/favicon.png -O /var/www/html/gpio/img/favicon.png
+sudo -u www-data wget https://github.com/pascaltippelt/raspberrypiGPIOWeb/raw/main/apache/gpio/scripts/execute_timer.php -O /var/www/html/gpio/scripts/execute_timer.php
 
 #Configuring apache2
 echo "Setting up apache2 config."
@@ -41,5 +43,10 @@ gpio readall
 
 echo "Adding www-data to gpio group."
 usermod -a -G gpio www-data
+
+echo "Installing cronjob for Timers."
+sudo -u www-data crontab -l > /tmp/jobs.txt #Dump the existing cron jobs to a file
+sudo -u www-data echo "* * * * * /usr/bin/php /var/www/html/gpio/scripts/execute_timer.php >> /var/log/timer.log" >> /tmp/jobs.txt # Add a new job to the file
+sudo -u www-data cron /tmp/jobs.txt
 
 echo "Done."
